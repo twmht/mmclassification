@@ -6,10 +6,11 @@ from .dataset_wrappers import (ClassBalancedDataset, ConcatDataset,
 from .imagenet import ImageNet
 from .mnist import MNIST, FashionMNIST
 from .samplers import DistributedSampler
+from .face_verification import FaceVerification
 
 __all__ = [
     'BaseDataset', 'ImageNet', 'CIFAR10', 'CIFAR100', 'MNIST', 'FashionMNIST',
     'build_dataloader', 'build_dataset', 'Compose', 'DistributedSampler',
     'ConcatDataset', 'RepeatDataset', 'ClassBalancedDataset', 'DATASETS',
-    'PIPELINES'
+    'PIPELINES', 'FaceVerification'
 ]

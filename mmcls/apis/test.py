@@ -10,14 +10,16 @@ import torch.distributed as dist
 from mmcv.runner import get_dist_info
 
 
-def single_gpu_test(model, data_loader, show=False, out_dir=None):
+def single_gpu_test(model, data_loader, show=False, out_dir=None, return_loss=True):
     model.eval()
     results = []
     dataset = data_loader.dataset
     prog_bar = mmcv.ProgressBar(len(dataset))
     for i, data in enumerate(data_loader):
+        for key in data.keys():
+            data[key] = data[key].cuda()
         with torch.no_grad():
-            result = model(return_loss=True, **data)
+            result = model(return_loss=return_loss, **data)
         results.append(result)
 
         if show or out_dir:
